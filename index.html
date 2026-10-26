@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mo3th Launcher</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #0d0d0d; color: #ffffff; padding: 40px; overflow: hidden; }
+        
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #222; padding-bottom: 20px; }
+        .logo { font-size: 32px; font-weight: bold; color: #e50914; letter-spacing: 2px; text-transform: uppercase; }
+        .logo span { color: #ffffff; }
+        .clock-container { text-align: left; }
+        #time { font-size: 36px; font-weight: 300; }
+        #date { font-size: 14px; color: #888; }
+
+        .section-title { font-size: 20px; margin: 30px 0 15px 0; color: #aaa; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .grid { display: flex; gap: 20px; overflow-x: auto; padding: 10px 0; }
+        
+        .card {
+            background: #1a1a1a;
+            border: 2px solid #2a2a2a;
+            border-radius: 12px;
+            width: 180px;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+        
+        .card:focus, .card:hover {
+            transform: scale(1.1);
+            border-color: #ffffff;
+            background: #292929;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            outline: none;
+        }
+
+        .card p { font-size: 16px; font-weight: 600; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="logo">mo3th <span>Launcher</span></div>
+        <div class="clock-container">
+            <div id="time">00:00</div>
+            <div id="date">Loading...</div>
+        </div>
+    </div>
+
+    <div class="section-title">التطبيقات والألعاب</div>
+    <div class="grid">
+        <div class="card" tabindex="0">
+            <p>YouTube</p>
+        </div>
+        <div class="card" tabindex="0">
+            <p>Netflix</p>
+        </div>
+        <div class="card" tabindex="0">
+            <p>الإعدادات</p>
+        </div>
+    </div>
+
+    <div class="section-title">الأفلام والترفيه</div>
+    <div class="grid">
+        <div class="card" tabindex="0">
+            <p>أحدث الأفلام</p>
+        </div>
+        <div class="card" tabindex="0">
+            <p>المفضلة</p>
+        </div>
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('time').innerText = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            document.getElementById('date').innerText = now.toLocaleDateString('ar-SA', { weekday: 'long', month: 'short', day: 'numeric' });
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body>
+</html>
