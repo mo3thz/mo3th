@@ -31,6 +31,8 @@
             align-items: center;
             cursor: pointer;
             transition: all 0.2s ease-in-out;
+            text-decoration: none;
+            color: #fff;
         }
         
         .card:focus, .card:hover {
@@ -41,7 +43,7 @@
             outline: none;
         }
 
-        .card p { font-size: 16px; font-weight: 600; }
+        .card p { font-size: 18px; font-weight: 600; }
     </style>
 </head>
 <body>
@@ -56,15 +58,20 @@
 
     <div class="section-title">التطبيقات والألعاب</div>
     <div class="grid">
-        <div class="card" tabindex="0">
+        <!-- رابط يوتيوب المباشر -->
+        <a class="card" tabindex="0" href="intent://#Intent;scheme=https;package=com.google.android.youtube.tv;end">
             <p>YouTube</p>
-        </div>
-        <div class="card" tabindex="0">
+        </a>
+        
+        <!-- رابط نتفليكس المباشر -->
+        <a class="card" tabindex="0" href="intent://#Intent;scheme=https;package=com.netflix.ninja;end">
             <p>Netflix</p>
-        </div>
-        <div class="card" tabindex="0">
+        </a>
+
+        <!-- رابط إعدادات الأندرويد -->
+        <a class="card" tabindex="0" href="intent://#Intent;action=android.settings.SETTINGS;end">
             <p>الإعدادات</p>
-        </div>
+        </a>
     </div>
 
     <div class="section-title">الأفلام والترفيه</div>
