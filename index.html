@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>mo3th Launcher</title>
+    <!-- أيقونات Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         
-        /* السماح بالتمرير العمودي لأسفل */
         body { 
             background-color: #0d0d0d; 
             color: #ffffff; 
@@ -26,38 +26,7 @@
 
         .section-title { font-size: 20px; margin: 25px 0 15px 0; color: #aaa; text-transform: uppercase; letter-spacing: 1px; }
         
-        .grid { display: flex; gap: 20px; overflow-x: auto; padding: 10px 0; }
-        
-        .card {
-            background: #1a1a1a;
-            border: 2px solid #2a2a2a;
-            border-radius: 12px;
-            width: 180px;
-            height: 120px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.2s ease-in-out;
-            text-decoration: none;
-            color: #fff;
-            gap: 10px;
-            flex-shrink: 0;
-        }
-        
-        .card:focus, .card:hover, .banner-slider:focus {
-            transform: scale(1.05);
-            border-color: #ffffff;
-            background: #292929;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-            outline: none;
-        }
-
-        .card i { font-size: 36px; }
-        .card p { font-size: 16px; font-weight: 600; }
-
-        /* معرض الصور مع تمكين الفوكس */
+        /* تصميم معرض الصور */
         .banner-slider {
             position: relative;
             width: 100%;
@@ -79,6 +48,39 @@
             opacity: 1;
         }
 
+        .grid { display: flex; gap: 20px; overflow-x: auto; padding: 10px 0; }
+        
+        .card {
+            background: #1a1a1a;
+            border: 2px solid #2a2a2a;
+            border-radius: 12px;
+            width: 180px;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            text-decoration: none;
+            color: #fff;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+        
+        /* التأثير عند التحديد بالريموت */
+        .card:focus, .card:hover, .banner-slider:focus {
+            transform: scale(1.05);
+            border-color: #ffffff;
+            background: #292929;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            outline: none;
+        }
+
+        .card i { font-size: 36px; }
+        .card p { font-size: 16px; font-weight: 600; }
+
+        /* ألوان الأيقونات */
         .fa-youtube { color: #ff0000; }
         .fa-film { color: #e50914; }
         .fa-gear { color: #00d2ff; }
@@ -96,7 +98,7 @@
         </div>
     </div>
 
-    <!-- قسم التطبيقات -->
+    <!-- قسم التطبيقات الرئيسية -->
     <div class="section-title">التطبيقات والألعاب</div>
     <div class="grid">
         <a class="card" tabindex="0" href="intent://www.youtube.com#Intent;scheme=https;end">
@@ -115,16 +117,15 @@
         </a>
     </div>
 
-    <!-- قسم معرض الصور من الذاكرة المحلية للقطعة (تمت إضافة tabindex="0" للتنقل إليه بالريموت)-->
-<div class="section-title">معرض الصور والأبرز</div>
-<div class="banner-slider" tabindex="0">
-    <img src="file:///storage/emulated/0/Download/image1.jpg" class="slide active" alt="Slide 1">
-    <img src="file:///storage/emulated/0/Download/image2.jpg" class="slide" alt="Slide 2">
-    <img src="file:///storage/emulated/0/Download/image3.jpg" class="slide" alt="Slide 3">
-</div>
+    <!-- قسم معرض الصور (استبدل اسماء الصور باسم صورك الحقيقية) -->
+    <div class="section-title">معرض الصور والأبرز</div>
+    <div class="banner-slider" tabindex="0">
+        <img src="file:///storage/emulated/0/Download/image1.jpg" class="slide active" alt="Slide 1">
+        <img src="file:///storage/emulated/0/Download/image2.jpg" class="slide" alt="Slide 2">
+        <img src="file:///storage/emulated/0/Download/image3.jpg" class="slide" alt="Slide 3">
+    </div>
 
-
-    <!-- قسم إضافي للتأكد من التمرير لأسفل -->
+    <!-- قسم الترفيه -->
     <div class="section-title">الأفلام والترفيه</div>
     <div class="grid">
         <div class="card" tabindex="0">
@@ -138,7 +139,7 @@
     </div>
 
     <script>
-        // كود الساعة
+        // كود تحديث الساعة والتاريخ
         function updateClock() {
             const now = new Date();
             document.getElementById('time').innerText = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -147,17 +148,19 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        // كود تحريك معرض الصور
+        // كود سلايد شو الصور
         let currentSlide = 0;
         const slides = document.querySelectorAll('.banner-slider img');
 
-        setInterval(() => {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }, 4000);
+        if (slides.length > 0) {
+            setInterval(() => {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }, 4000);
+        }
 
-        // جعل الشاشة تتبع العنصر المحدد تلقائياً عند النزول بالريموت
+        // كود متابعة الحركة والتركيز التلقائي لأسفل بالريموت
         document.addEventListener('focusin', (e) => {
             e.target.scrollIntoView({ behavior: 'smooth', block: 'center' });
         });
